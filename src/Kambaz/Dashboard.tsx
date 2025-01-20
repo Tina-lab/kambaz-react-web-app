@@ -41,7 +41,7 @@ export default function Dashboard() {
             className="wd-dashboard-course-link"
           >
             <img src="/images/reactjs.jpg" width={200} />
-            <h5> CS2044 Computer Systems </h5>
+            <h5> CS2744 Computer Systems </h5>
             <div>
               <p className="wd-dashboard-course-title">
                 Different operating systems
