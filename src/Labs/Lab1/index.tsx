@@ -324,7 +324,7 @@ _Starship-gap2.jpg"
       </a>
       to get dummy text <br />
       Please
-      <a href="https://github.com/Tina-lab?tab=repositories" id="wd-github">
+      <a href="https://github.com/Tina-lab/kambaz-react-web-app" id="wd-github">
         click here
       </a>
       to the main page of my GitHub repository.

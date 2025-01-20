@@ -119,7 +119,7 @@ export default function AssignmentEditor() {
                   <label htmlFor="wd-available-from">Available from</label>
                 </td>
                 <td>
-                  <label htmlFor="wd-available-to">Available to</label>
+                  <label htmlFor="wd-available-to">Until</label>
                 </td>
               </tr>
               <tr>
