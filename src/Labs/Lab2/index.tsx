@@ -5,6 +5,9 @@ import Border from "./Borders";
 import Padding from "./Padding";
 import Margin from "./Margins";
 import Corner from "./Corners";
+import Dimension from "./Dimensions";
+import Position from "./Positions";
+import Zindex from "./Zindex";
 export default function Lab2() {
   return (
     <div id="wd-lab2">
@@ -65,6 +68,9 @@ export default function Lab2() {
       <Padding />
       <Margin />
       <Corner />
+      <Dimension />
+      <Position />
+      <Zindex />
     </div>
   );
 }
