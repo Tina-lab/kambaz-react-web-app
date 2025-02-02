@@ -14,7 +14,7 @@ export default function Modules() {
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">
             <BsGripVertical className="me-2 fs-3" />
-            Week 1, Lecture 1 - Course Introduction, Syllabus
+            Week 1
             <ModuleControlButtons />
           </div>
           <ul className="wd-lessons list-group rounded-0">
@@ -72,7 +72,7 @@ export default function Modules() {
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">
             <BsGripVertical className="me-2 fs-3" />
-            Week 2, Lecture 2 - Formatting User Interface with HTML
+            Week 2
             <ModuleControlButtons />
           </div>
           <ul className="wd-lessons list-group rounded-0">
