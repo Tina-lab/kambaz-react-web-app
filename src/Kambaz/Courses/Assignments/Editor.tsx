@@ -1,7 +1,4 @@
-import { BiCross } from "react-icons/bi";
-import { CgCalendar, CgCross } from "react-icons/cg";
-import { FaCross } from "react-icons/fa";
-import { GiCrossMark } from "react-icons/gi";
+import { CgCalendar } from "react-icons/cg";
 import { RxCross1 } from "react-icons/rx";
 
 export default function AssignmentEditor() {
