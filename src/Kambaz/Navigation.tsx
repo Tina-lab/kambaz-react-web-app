@@ -29,7 +29,6 @@ export default function KambazNavigation() {
         <br />
         Account
       </Link>
-      <br />
       <Link
         to="/Kambaz/Dashboard"
         id="wd-dashboard-link"
