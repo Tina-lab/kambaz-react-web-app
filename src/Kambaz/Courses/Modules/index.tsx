@@ -9,7 +9,6 @@ export default function Modules() {
       <br />
       <br />
       <br />
-      <br />
       <ul id="wd-modules" className="list-group rounded-0">
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">

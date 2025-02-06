@@ -21,11 +21,11 @@ export default function AssignmentsControls() {
         className="btn btn-md btn-secondary me-1 float-end"
       >
         <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-        Module
+        Group
       </button>
       <button
         id="wd-view-progress"
-        className="btn btn-md btn-danger btn-secondary me-1 float-end"
+        className="btn btn-md btn-danger me-1 float-end"
       >
         <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
         Assignment

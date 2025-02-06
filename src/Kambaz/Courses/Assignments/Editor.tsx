@@ -173,14 +173,14 @@ export default function AssignmentEditor() {
         <div id="wd-assign" className="col-sm-8">
           <div className="border">
             <div className="m-3 row">
-              <label htmlFor="wd-assign-to" className="fw-bold fs-5">
+              <label htmlFor="wd-assign-to" className="fw-bold fs-6">
                 Assign to
               </label>
             </div>
             <div className="m-3 row">
               <div id="wd-assign-to" className="m-2 row border form-control">
                 <div className="d-flex">
-                  <button className="btn btn-lg btn-secondary">
+                  <button className="btn btn-md btn-secondary">
                     Everyone <RxCross1 />
                   </button>
                 </div>

@@ -2,7 +2,8 @@ import { BsGripVertical, BsPlus } from "react-icons/bs";
 import AssignmentsControls from "./AssignmentsControls";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { GiNotebook } from "react-icons/gi";
-import LessonControlButtons from "../Modules/ModuleControlButtons";
+import LessonControlButtons from "../Modules/LessonControlButtons";
+import { TiArrowSortedDown } from "react-icons/ti";
 
 export default function Assignments() {
   return (
@@ -12,15 +13,16 @@ export default function Assignments() {
       <br />
       <ul id="wd-assignments" className="list-group rounded-0">
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
-          <div className="wd-title p-3 ps-2 bg-secondary">
+          <div className="wd-title p-3 ps-2 bg-secondary d-flex align-items-center">
             <BsGripVertical className="me-2 fs-3" />
+            <TiArrowSortedDown className="me-2 fs-3" />
             <span className="fs-4 fw-bold">ASSIGNMENTS</span>
-            <div className="float-end">
+            <div className="d-flex align-items-center ms-auto">
               <span className="px-3 py-1 rounded-pill border">
                 40% of Total
               </span>
-              <BsPlus />
-              <IoEllipsisVertical className="fs-4" />
+              <BsPlus className="fs-1 mx-3" />
+              <IoEllipsisVertical className="fs-1" />
             </div>
           </div>
           <ul
@@ -38,7 +40,8 @@ export default function Assignments() {
                   A1 - ENV + HTML
                 </a>
                 <br />
-                Multiple Modules | <b>Not available until</b> May 6th at 12am
+                <span className="text-danger">Multiple Modules</span> |
+                <b>Not available until</b> May 6th at 12am
                 <br />
                 <b>Due</b> May 13 at 11:59pm | 100 pts
               </div>
@@ -57,7 +60,8 @@ export default function Assignments() {
                   A2 - CSS + BOOTSTRAP
                 </a>
                 <br />
-                Multiple Modules | <b>Not available until</b> May 13th at 12am
+                <span className="text-danger">Multiple Modules</span> |
+                <b>Not available until</b> May 13th at 12am
                 <br />
                 <b>Due</b> May 20 at 11:59pm | 100 pts
               </div>
@@ -76,7 +80,8 @@ export default function Assignments() {
                   A3 - JAVASCRIPT + REACT
                 </a>
                 <br />
-                Multiple Modules | <b>Not available until</b> May 20th at 12am
+                <span className="text-danger">Multiple Modules</span> |
+                <b>Not available until</b> May 20th at 12am
                 <br />
                 <b>Due</b> May 27 at 11:59pm | 100 pts
               </div>
