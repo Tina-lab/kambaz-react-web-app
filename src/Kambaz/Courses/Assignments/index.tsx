@@ -4,8 +4,12 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import { GiNotebook } from "react-icons/gi";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import { TiArrowSortedDown } from "react-icons/ti";
+import * as db from "../../Database";
+import { useParams } from "react-router";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments.filter((m: any) => m.course === cid);
   return (
     <div id="wd-assignments">
       <AssignmentsControls />
@@ -29,66 +33,28 @@ export default function Assignments() {
             id="wd-assignment-list"
             className="wd-assignments list-group rounded-0"
           >
-            <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
-              <BsGripVertical className="me-2 fs-3" />
-              <GiNotebook className="me-2 fs-3 text-success" />
-              <div id="assignment-description">
-                <a
-                  href="#/Kambaz/Courses/1234/Assignments/123"
-                  className="wd-assignment-link"
-                >
-                  A1 - ENV + HTML
-                </a>
-                <br />
-                <span className="text-danger">Multiple Modules</span> |
-                <b>Not available until</b> May 6th at 12am
-                <br />
-                <b>Due</b> May 13 at 11:59pm | 100 pts
-              </div>
-              <div className="ms-auto">
-                <LessonControlButtons />
-              </div>
-            </li>
-            <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
-              <BsGripVertical className="me-2 fs-3" />
-              <GiNotebook className="me-2 fs-3 text-success" />
-              <div id="assignment-description">
-                <a
-                  href="#/Kambaz/Courses/1234/Assignments/123"
-                  className="wd-assignment-link"
-                >
-                  A2 - CSS + BOOTSTRAP
-                </a>
-                <br />
-                <span className="text-danger">Multiple Modules</span> |
-                <b>Not available until</b> May 13th at 12am
-                <br />
-                <b>Due</b> May 20 at 11:59pm | 100 pts
-              </div>
-              <div className="ms-auto">
-                <LessonControlButtons />
-              </div>
-            </li>
-            <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
-              <BsGripVertical className="me-2 fs-3" />
-              <GiNotebook className="me-2 fs-3 text-success" />
-              <div id="assignment-description">
-                <a
-                  href="#/Kambaz/Courses/1234/Assignments/123"
-                  className="wd-assignment-link"
-                >
-                  A3 - JAVASCRIPT + REACT
-                </a>
-                <br />
-                <span className="text-danger">Multiple Modules</span> |
-                <b>Not available until</b> May 20th at 12am
-                <br />
-                <b>Due</b> May 27 at 11:59pm | 100 pts
-              </div>
-              <div className="ms-auto">
-                <LessonControlButtons />
-              </div>
-            </li>
+            {assignments.map((assignment) => (
+              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
+                <BsGripVertical className="me-2 fs-3" />
+                <GiNotebook className="me-2 fs-3 text-success" />
+                <div id="assignment-description">
+                  <a
+                    href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
+                    className="wd-assignment-link"
+                  >
+                    {assignment.title}
+                  </a>
+                  <br />
+                  <span className="text-danger">Multiple Modules</span> |
+                  <b>Not available until</b> {assignment.availabe} at 12am
+                  <br />
+                  <b>Due</b> {assignment.due} at 11:59pm | 100 pts
+                </div>
+                <div className="ms-auto">
+                  <LessonControlButtons />
+                </div>
+              </li>
+            ))}
           </ul>
         </li>
       </ul>

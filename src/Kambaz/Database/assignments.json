@@ -1,0 +1,74 @@
+[
+  {
+      "_id": "A101",
+      "title": "Propulsion Assignment",
+      "course": "RS101",
+      "availabe": "May 6th",
+      "due": "May 20th",
+      "description": "This assignment focuses on analyzing different propulsion systems used in aerospace applications. Students will explore the efficiency, thrust generation, and fuel consumption of various engines.\n\nKey Topics:\n- Basic principles of propulsion and Newton’s third law\n- Types of propulsion systems: jet engines, rockets, and ion propulsion\n- Thrust equation and specific impulse calculations\n- Comparative efficiency of chemical and electric propulsion\n\nInstructions:\n1. Research and compare different propulsion technologies.\n2. Provide a case study on a real-world propulsion system.\n3. Perform calculations on thrust and specific impulse for a given engine.\n4. Write a technical report summarizing findings and recommendations."
+  },
+  {
+      "_id": "A102",
+      "title": "Combustion Analysis",
+      "course": "RS101",
+      "availabe": "June 10th",
+      "due": "June 18th",
+      "description": "This assignment explores the fundamental principles of combustion as applied to aerospace propulsion. The goal is to analyze combustion efficiency, heat release, and emissions.\n\nKey Topics:\n- Thermodynamics of combustion reactions\n- Stoichiometric ratios and air-fuel mixtures\n- Energy output and efficiency calculations\n- Environmental impact and emission control\n\nInstructions:\n1. Explain the combustion process in a selected propulsion system.\n2. Analyze air-fuel ratios for optimal performance.\n3. Perform energy output calculations for a given fuel type.\n4. Submit a detailed report discussing findings and possible optimizations."
+  },
+  {
+      "_id": "A103",
+      "title": "Nozzle Design Project",
+      "course": "RS101",
+      "availabe": "July 7th",
+      "due": "July 20th",
+      "description": "In this project, students will design and analyze a rocket nozzle to maximize thrust and efficiency. The focus is on the physics of nozzle expansion and flow behavior.\n\nKey Topics:\n- Nozzle geometry and design principles\n- Supersonic and subsonic flow regions\n- Expansion ratio and efficiency considerations\n- Computational simulation of flow patterns\n\nInstructions:\n1. Design a nozzle that optimizes thrust.\n2. Perform flow analysis using CFD software.\n3. Calculate expansion ratios and velocity profiles.\n4. Document the design process and justify decisions."
+  },
+  {
+      "_id": "A201",
+      "title": "Aerodynamics Quiz",
+      "course": "RS102",
+      "availabe": "May 4th",
+      "due": "May 17th",
+      "description": "This quiz tests knowledge of fundamental aerodynamics, covering airflow behavior and forces acting on an aircraft.\n\nKey Topics:\n- Lift, drag, and aerodynamic forces\n- Bernoulli’s principle and airflow velocity\n- Pressure distribution around an airfoil\n- Boundary layers and flow separation\n\nInstructions:\n1. Answer multiple-choice and short-answer questions.\n2. Solve aerodynamic force calculations.\n3. Interpret airflow diagrams and graphs.\n4. Submit responses before the deadline."
+  },
+  {
+      "_id": "A202",
+      "title": "Flow Analysis",
+      "course": "RS102",
+      "availabe": "June 6th",
+      "due": "June 20th",
+      "description": "This assignment requires analyzing fluid flow over aerodynamic surfaces. Students will use theoretical and computational methods to evaluate flow properties.\n\nKey Topics:\n- Navier-Stokes equations and fluid dynamics\n- Turbulent vs. laminar flow\n- Computational Fluid Dynamics (CFD) simulations\n- Flow visualization techniques\n\nInstructions:\n1. Choose an airfoil and analyze its airflow.\n2. Perform CFD simulations to predict lift and drag.\n3. Compare theoretical and simulated results.\n4. Write a comprehensive report on findings."
+  },
+  {
+      "_id": "A203",
+      "title": "Heating Analysis",
+      "course": "RS102",
+      "availabe": "July 7th",
+      "due": "July 21th",
+      "description": "This assignment focuses on heat transfer analysis in aerospace structures, including conduction, convection, and radiation.\n\nKey Topics:\n- Heat transfer equations and thermal conductivity\n- Temperature gradients in high-speed flight\n- Thermal protection systems in spacecraft\n- Heat dissipation techniques\n\nInstructions:\n1. Analyze heat distribution in an aerospace component.\n2. Use software tools to model thermal effects.\n3. Calculate heat flux and thermal efficiency.\n4. Submit a report with design recommendations."
+  },
+  {
+      "_id": "A301",
+      "title": "Structural Design Task",
+      "course": "RS103",
+      "availabe": "May 3th",
+      "due": "May 20th",
+      "description": "This assignment involves designing a structural component for aerospace applications, ensuring it meets strength and weight requirements.\n\nKey Topics:\n- Material selection and structural integrity\n- Load distribution and stress analysis\n- Finite element analysis (FEA) for structural testing\n- Aerospace industry safety standards\n\nInstructions:\n1. Design a structural component for a specific application.\n2. Perform stress analysis using FEA.\n3. Justify material selection based on weight and strength.\n4. Provide a final report with design details."
+  },
+  {
+      "_id": "A302",
+      "title": "Orbital Calculations",
+      "course": "RS103",
+      "availabe": "June 6th",
+      "due": "June 16th",
+      "description": "This assignment covers the mathematical principles of orbital mechanics. Students will calculate satellite orbits and predict trajectories.\n\nKey Topics:\n- Kepler’s laws and orbital motion\n- Orbital parameters and transfer calculations\n- Hohmann transfer and delta-v analysis\n- Gravity assists and mission planning\n\nInstructions:\n1. Calculate orbital parameters for a satellite.\n2. Determine transfer orbits and fuel requirements.\n3. Solve problems involving orbital perturbations.\n4. Submit a mathematical analysis of results."
+  },
+  {
+      "_id": "A303",
+      "title": "Systems Engineering Exam",
+      "course": "RS103",
+      "availabe": "July 9th",
+      "due": "July 20th",
+      "description": "This exam assesses knowledge of systems engineering principles in aerospace projects, focusing on requirements, design, and project management.\n\nKey Topics:\n- System architecture and requirements analysis\n- Risk assessment and mitigation strategies\n- Lifecycle management and cost analysis\n- Integration of subsystems in aerospace design\n\nInstructions:\n1. Answer theoretical and practical questions.\n2. Provide solutions to system integration challenges.\n3. Apply engineering principles to case studies.\n4. Complete the exam within the allotted time."
+  }
+]

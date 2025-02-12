@@ -1,7 +1,11 @@
 import { CgCalendar } from "react-icons/cg";
 import { RxCross1 } from "react-icons/rx";
+import * as db from "../../Database";
+import { Link, useParams } from "react-router";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.find((a) => a._id === aid);
   return (
     <div id="wd-assignments-editor">
       <label htmlFor="wd-name" className="form-label">
@@ -11,23 +15,10 @@ export default function AssignmentEditor() {
         id="wd-name"
         type="text"
         className="form-control my-0"
-        value="A1"
+        value={assignment?.title}
       />
       <div id="wd-description" className="border form-control my-3">
-        The assignment is <span className="text-danger">available online.</span>
-        <br />
-        <br /> Submit a link to the landing page of your Web application running
-        on Netlify. <br /> <br />
-        The landing page should include the following:
-        <br /> <br />
-        <ul>
-          <li>Your full name and section.</li>
-          <li> links to each of the lab assignments.</li>
-          <li> Link to the Kanbas application.</li>
-          <li> links to all relevant source code repositories</li>
-        </ul>
-        The kanbas application should include a link to navigate back to the
-        landing page.
+        {assignment?.description}
       </div>
       <div className="mb-3 row">
         <label htmlFor="point" className="col-sm-4 col-form-label text-end">
@@ -193,7 +184,7 @@ export default function AssignmentEditor() {
               <div className="d-flex align-items-center">
                 <input
                   type="text"
-                  value="May 13, 2024, 11:59 PM"
+                  value={`${assignment?.due}, 2024, 11:59 PM`}
                   className="form-control"
                 />
                 <CgCalendar className="fs-1" />
@@ -206,11 +197,11 @@ export default function AssignmentEditor() {
               </div>
             </div>
             <div className="mx-3 row">
-              <div className="wd-grid-row">
+              <div className="wd-grid-row mb-3">
                 <div className="d-flex align-items-center wd-grid-col-half-page">
                   <input
                     type="text"
-                    value="May 6, 2024"
+                    value={assignment?.availabe}
                     className="form-control"
                   />
                   <CgCalendar className="fs-1" />
@@ -226,8 +217,18 @@ export default function AssignmentEditor() {
       </div>
       <hr />
       <div style={{ textAlign: "right" }}>
-        <button className="btn btn-lg bg-secondary m-1">Cancel</button>
-        <button className="btn btn-lg bg-danger m-1">Save</button>
+        <Link
+          to={`/Kambaz/Courses/${cid}/Assignments`}
+          className="btn btn-lg bg-secondary m-1"
+        >
+          Cancel
+        </Link>
+        <Link
+          to={`/Kambaz/Courses/${cid}/Assignments`}
+          className="btn btn-lg bg-danger m-1"
+        >
+          Save
+        </Link>
       </div>
     </div>
   );
