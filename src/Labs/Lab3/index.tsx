@@ -32,6 +32,7 @@ import VariableTypes from "./VariableTypes";
 import Highlight from "./HighLight";
 import PathParameters from "./PathParameters";
 export default function Lab3() {
+  console.log("hello world");
   return (
     <div id="wd-lab3">
       <h3>Lab 3</h3>
