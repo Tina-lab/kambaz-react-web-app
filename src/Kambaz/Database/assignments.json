@@ -70,5 +70,125 @@
       "availabe": "July 9th",
       "due": "July 20th",
       "description": "This exam assesses knowledge of systems engineering principles in aerospace projects, focusing on requirements, design, and project management.\n\nKey Topics:\n- System architecture and requirements analysis\n- Risk assessment and mitigation strategies\n- Lifecycle management and cost analysis\n- Integration of subsystems in aerospace design\n\nInstructions:\n1. Answer theoretical and practical questions.\n2. Provide solutions to system integration challenges.\n3. Apply engineering principles to case studies.\n4. Complete the exam within the allotted time."
+  },
+  {
+      "_id": "A401",
+      "title": "Organic Molecules Assignment",
+      "course": "RS104",
+      "availabe": "May 5th",
+      "due": "May 19th",
+      "description": "This assignment focuses on the structure and properties of organic molecules.\n\nKey Topics:\n- Hydrocarbons and functional groups\n- Structural isomerism\n- Physical properties of organic compounds\n\nInstructions:\n1. Identify and classify different organic molecules.\n2. Analyze the physical properties of given compounds.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A402",
+      "title": "Reaction Mechanisms Project",
+      "course": "RS104",
+      "availabe": "June 10th",
+      "due": "June 24th",
+      "description": "This project involves studying the mechanisms of organic reactions.\n\nKey Topics:\n- Reaction intermediates\n- Energy diagrams\n- Catalysis in organic reactions\n\nInstructions:\n1. Explain the mechanism of a selected organic reaction.\n2. Draw energy diagrams for the reaction.\n3. Discuss the role of catalysts in the reaction."
+  },
+  {
+      "_id": "A403",
+      "title": "Stereochemistry Quiz",
+      "course": "RS104",
+      "availabe": "July 7th",
+      "due": "July 21st",
+      "description": "This quiz tests knowledge of stereochemistry in organic compounds.\n\nKey Topics:\n- Chirality and enantiomers\n- Optical activity\n- Stereoisomerism\n\nInstructions:\n1. Answer multiple-choice and short-answer questions.\n2. Solve problems related to stereochemistry.\n3. Submit responses before the deadline."
+  },
+  {
+      "_id": "A501",
+      "title": "Inorganic Compounds Assignment",
+      "course": "RS105",
+      "availabe": "May 6th",
+      "due": "May 20th",
+      "description": "This assignment focuses on the properties and structures of inorganic compounds.\n\nKey Topics:\n- Coordination compounds\n- Crystal field theory\n- Bonding in inorganic chemistry\n\nInstructions:\n1. Identify and classify different inorganic compounds.\n2. Analyze the bonding in given compounds.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A502",
+      "title": "Periodic Table Project",
+      "course": "RS105",
+      "availabe": "June 12th",
+      "due": "June 26th",
+      "description": "This project involves studying the periodic table and element properties.\n\nKey Topics:\n- Periodic trends\n- Element properties\n- Applications of the periodic table\n\nInstructions:\n1. Explain the trends in the periodic table.\n2. Analyze the properties of selected elements.\n3. Discuss the applications of the periodic table."
+  },
+  {
+      "_id": "A503",
+      "title": "Spectroscopy Quiz",
+      "course": "RS105",
+      "availabe": "July 8th",
+      "due": "July 22nd",
+      "description": "This quiz tests knowledge of spectroscopic methods in inorganic chemistry.\n\nKey Topics:\n- UV-Vis spectroscopy\n- IR spectroscopy\n- NMR spectroscopy\n\nInstructions:\n1. Answer multiple-choice and short-answer questions.\n2. Solve problems related to spectroscopy.\n3. Submit responses before the deadline."
+  },
+  {
+      "_id": "A601",
+      "title": "Thermodynamics Assignment",
+      "course": "RS106",
+      "availabe": "May 7th",
+      "due": "May 21st",
+      "description": "This assignment focuses on the principles of thermodynamics in physical chemistry.\n\nKey Topics:\n- Laws of thermodynamics\n- Thermodynamic systems\n- Entropy and enthalpy\n\nInstructions:\n1. Explain the laws of thermodynamics.\n2. Analyze different thermodynamic systems.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A602",
+      "title": "Quantum Chemistry Project",
+      "course": "RS106",
+      "availabe": "June 14th",
+      "due": "June 28th",
+      "description": "This project involves studying the principles of quantum chemistry.\n\nKey Topics:\n- Quantum theory\n- Wave functions\n- Molecular orbitals\n\nInstructions:\n1. Explain the principles of quantum theory.\n2. Analyze wave functions and molecular orbitals.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A603",
+      "title": "Spectroscopy Quiz",
+      "course": "RS106",
+      "availabe": "July 9th",
+      "due": "July 23rd",
+      "description": "This quiz tests knowledge of spectroscopic methods in physical chemistry.\n\nKey Topics:\n- UV-Vis spectroscopy\n- IR spectroscopy\n- NMR spectroscopy\n\nInstructions:\n1. Answer multiple-choice and short-answer questions.\n2. Solve problems related to spectroscopy.\n3. Submit responses before the deadline."
+  },
+  {
+      "_id": "A701",
+      "title": "Elvish Linguistics Assignment",
+      "course": "RS107",
+      "availabe": "May 8th",
+      "due": "May 22nd",
+      "description": "This assignment focuses on the study of Elvish languages in Middle-earth.\n\nKey Topics:\n- Sindarin\n- Quenya\n- Elvish scripts\n\nInstructions:\n1. Explain the basics of Sindarin and Quenya.\n2. Analyze the usage of Elvish scripts.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A702",
+      "title": "Dwarvish and Black Speech Project",
+      "course": "RS107",
+      "availabe": "June 15th",
+      "due": "June 29th",
+      "description": "This project involves studying the Dwarvish and Black Speech languages in Middle-earth.\n\nKey Topics:\n- Khuzdul\n- Black Speech\n- Language comparison\n\nInstructions:\n1. Explain the basics of Khuzdul and Black Speech.\n2. Compare the two languages.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A703",
+      "title": "Language Quiz",
+      "course": "RS107",
+      "availabe": "July 10th",
+      "due": "July 24th",
+      "description": "This quiz tests knowledge of ancient languages and scripts in Middle-earth.\n\nKey Topics:\n- Elvish languages\n- Dwarvish language\n- Black Speech\n\nInstructions:\n1. Answer multiple-choice and short-answer questions.\n2. Solve problems related to the languages.\n3. Submit responses before the deadline."
+  },
+  {
+      "_id": "A801",
+      "title": "Diplomatic History Assignment",
+      "course": "RS108",
+      "availabe": "May 9th",
+      "due": "May 23rd",
+      "description": "This assignment focuses on the diplomatic history in Middle-earth.\n\nKey Topics:\n- Council of Elrond\n- War of the Ring\n- Alliances and conflicts\n\nInstructions:\n1. Explain the significance of the Council of Elrond.\n2. Analyze the diplomatic aspects of the War of the Ring.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A802",
+      "title": "Leadership Project",
+      "course": "RS108",
+      "availabe": "June 16th",
+      "due": "June 30th",
+      "description": "This project involves studying the leadership and wisdom in Middle-earth.\n\nKey Topics:\n- Elven leaders\n- Human leaders\n- Wisdom in diplomacy\n\nInstructions:\n1. Explain the roles of key Elven and human leaders.\n2. Analyze the importance of wisdom in diplomacy.\n3. Submit a report with your findings."
+  },
+  {
+      "_id": "A803",
+      "title": "Diplomacy Quiz",
+      "course": "RS108",
+      "availabe": "July 11th",
+      "due": "July 25th",
+      "description": "This quiz tests knowledge of inter-species diplomacy in Middle-earth.\n\nKey Topics:\n- Elves, Men, and Dwarves\n- Wizards\n- Diplomatic interactions\n\nInstructions:\n1. Answer multiple-choice and short-answer questions.\n2. Solve problems related to diplomacy.\n3. Submit responses before the deadline."
   }
 ]
