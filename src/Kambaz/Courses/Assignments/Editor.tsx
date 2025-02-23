@@ -207,7 +207,11 @@ export default function AssignmentEditor() {
                   <CgCalendar className="fs-1" />
                 </div>
                 <div className="d-flex align-items-center wd-grid-col-half-page">
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={assignment?.until}
+                    className="form-control"
+                  />
                   <CgCalendar className="fs-1" />
                 </div>
               </div>
