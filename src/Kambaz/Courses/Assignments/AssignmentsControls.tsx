@@ -7,11 +7,11 @@ export default function AssignmentsControls() {
       id="wd-assignments-controls"
       className="text-nowrap d-flex align-items-end"
     >
-      <span className="input-group mb-0 me-2">
+      <span className="form-control input-group mb-0 me-2">
         <FaMagnifyingGlass className="fs-1 me-2" />
         <input
           type="text"
-          className="form-control me-2 float-start"
+          className="me-2 float-start border-0"
           id="assignment-search"
           placeholder="Search..."
         />
