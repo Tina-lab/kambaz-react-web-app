@@ -1,15 +1,29 @@
+import React, { useState } from "react";
 import { BsGripVertical } from "react-icons/bs";
 import ModulesControls from "./ModulesControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import { v4 as uuidv4 } from "uuid";
 export default function Modules() {
   const { cid } = useParams();
-  const modules = db.modules.filter((m: any) => m.course === cid);
+  const [modules, setModules] = useState<any[]>(db.modules);
+  const [moduleName, setModuleName] = useState("");
+  const addModule = () => {
+    setModules([
+      ...modules,
+      { _id: uuidv4(), name: moduleName, course: cid, lessons: [] },
+    ]);
+    setModuleName("");
+  };
   return (
     <div className="d-flex flex-column">
-      <ModulesControls />
+      <ModulesControls
+        setModuleName={setModuleName}
+        moduleName={moduleName}
+        addModule={addModule}
+      />
       <br />
       <ul id="wd-modules" className="list-group rounded-0">
         {modules.map((module) => (
