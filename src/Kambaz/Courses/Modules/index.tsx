@@ -8,7 +8,9 @@ import * as db from "../../Database";
 import { v4 as uuidv4 } from "uuid";
 export default function Modules() {
   const { cid } = useParams();
-  const [modules, setModules] = useState<any[]>(db.modules);
+  const [modules, setModules] = useState<any[]>(
+    db.modules.filter((m: any) => m.course === cid)
+  );
   const [moduleName, setModuleName] = useState("");
   const addModule = () => {
     setModules([
