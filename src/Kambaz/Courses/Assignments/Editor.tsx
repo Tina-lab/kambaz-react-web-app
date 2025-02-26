@@ -201,7 +201,7 @@ export default function AssignmentEditor() {
                 <div className="d-flex align-items-center wd-grid-col-half-page">
                   <input
                     type="text"
-                    value={assignment?.availabe}
+                    value={assignment?.availableFrom}
                     className="form-control"
                   />
                   <CgCalendar className="fs-1" />
@@ -209,7 +209,7 @@ export default function AssignmentEditor() {
                 <div className="d-flex align-items-center wd-grid-col-half-page">
                   <input
                     type="text"
-                    value={assignment?.until}
+                    value={assignment?.availableUntil}
                     className="form-control"
                   />
                   <CgCalendar className="fs-1" />
