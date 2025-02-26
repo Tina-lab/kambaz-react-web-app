@@ -4,6 +4,8 @@ import * as db from "../../Database";
 import { Link, useParams } from "react-router";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addAssignment } from "./reducer";
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const assignment = db.assignments.find((a) => a._id === aid);
@@ -17,6 +19,7 @@ export default function AssignmentEditor() {
     due: "2023-12-15",
     description: "New Description",
   });
+  const dispatch = useDispatch();
   return (
     <div id="wd-assignments-editor">
       <label htmlFor="wd-name" className="form-label">
@@ -27,6 +30,15 @@ export default function AssignmentEditor() {
         type="text"
         className="form-control my-0"
         value={assignment?.title}
+        onChange={
+          !assignment
+            ? (e) => {
+                console.log("onChange triggered with value:", e.target.value);
+                setNewassignment({ ...newassignment, title: e.target.value });
+                console.log(newassignment);
+              }
+            : () => {}
+        }
         placeholder="New Assignment"
       />
       <textarea
@@ -34,6 +46,9 @@ export default function AssignmentEditor() {
         className="border form-control my-3"
         rows={8}
         value={assignment?.description}
+        onChange={(e) =>
+          setNewassignment({ ...newassignment, description: e.target.value })
+        }
         placeholder="New Description"
       />
       <div className="mb-3 row">
@@ -46,6 +61,9 @@ export default function AssignmentEditor() {
             className="form-control"
             id="point"
             value={assignment?.points}
+            onChange={(e) =>
+              setNewassignment({ ...newassignment, points: e.target.value })
+            }
           />
         </div>
       </div>
@@ -251,6 +269,10 @@ export default function AssignmentEditor() {
         <Link
           to={`/Kambaz/Courses/${cid}/Assignments`}
           className="btn btn-lg bg-danger m-1"
+          onClick={() => {
+            console.log("Saving assignment:", newassignment);
+            dispatch(addAssignment(newassignment));
+          }}
         >
           Save
         </Link>

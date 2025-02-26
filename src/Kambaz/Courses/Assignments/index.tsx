@@ -7,10 +7,14 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import * as db from "../../Database";
 import { useParams } from "react-router";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Assignments() {
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { cid } = useParams();
-  const assignments = db.assignments.filter((m: any) => m.course === cid);
+  const filteredAssignments = assignments.filter(
+    (assignment: any) => assignment.course === cid
+  );
   return (
     <div id="wd-assignments">
       {cid && <AssignmentsControls cid={cid} />}
@@ -34,7 +38,7 @@ export default function Assignments() {
             id="wd-assignment-list"
             className="wd-assignments list-group rounded-0"
           >
-            {assignments.map((assignment) => (
+            {filteredAssignments.map((assignment: any) => (
               <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
                 <BsGripVertical className="me-2 fs-3" />
                 <GiNotebook className="me-2 fs-3 text-success" />
