@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import * as db from "./Database";
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 export default function Dashboard({
   courses,

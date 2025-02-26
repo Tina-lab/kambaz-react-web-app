@@ -2,10 +2,21 @@ import { CgCalendar } from "react-icons/cg";
 import { RxCross1 } from "react-icons/rx";
 import * as db from "../../Database";
 import { Link, useParams } from "react-router";
-
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const assignment = db.assignments.find((a) => a._id === aid);
+  const [newassignment, setNewassignment] = useState<any>({
+    _id: uuidv4(),
+    title: "New Assignment",
+    course: { cid },
+    points: 100,
+    availableFrom: "2023-09-10",
+    availableUntil: "2023-12-15",
+    due: "2023-12-15",
+    description: "New Description",
+  });
   return (
     <div id="wd-assignments-editor">
       <label htmlFor="wd-name" className="form-label">
@@ -16,19 +27,26 @@ export default function AssignmentEditor() {
         type="text"
         className="form-control my-0"
         value={assignment?.title}
+        placeholder="New Assignment"
       />
       <textarea
         id="wd-description"
         className="border form-control my-3"
         rows={8}
         value={assignment?.description}
+        placeholder="New Description"
       />
       <div className="mb-3 row">
         <label htmlFor="point" className="col-sm-4 col-form-label text-end">
           Points
         </label>
         <div className="col-sm-8">
-          <input type="text" className="form-control" id="point" value="100" />
+          <input
+            type="text"
+            className="form-control"
+            id="point"
+            value={assignment?.points}
+          />
         </div>
       </div>
       <div className="mb-3 row">
