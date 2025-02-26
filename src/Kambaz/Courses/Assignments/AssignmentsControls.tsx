@@ -8,7 +8,7 @@ export default function AssignmentsControls() {
       className="text-nowrap d-flex align-items-end"
     >
       <span className="form-control input-group mb-0 me-2">
-        <FaMagnifyingGlass className="fs-1 me-2" />
+        <FaMagnifyingGlass className="fs-5 me-2" />
         <input
           type="text"
           className="me-2 float-start border-0"
