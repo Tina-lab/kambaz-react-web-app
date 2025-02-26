@@ -46,7 +46,7 @@ export default function Assignments() {
                   </a>
                   <br />
                   <span className="text-danger">Multiple Modules</span> |
-                  <b>Not available until</b> {assignment.availabe} at 12am
+                  <b>Not available until</b> {assignment.availableFrom} at 12am
                   <br />
                   <b>Due</b> {assignment.due} at 11:59pm | 100 pts
                 </div>
