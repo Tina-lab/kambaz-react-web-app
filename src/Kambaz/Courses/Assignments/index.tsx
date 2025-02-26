@@ -12,7 +12,7 @@ export default function Assignments() {
   const assignments = db.assignments.filter((m: any) => m.course === cid);
   return (
     <div id="wd-assignments">
-      <AssignmentsControls />
+      {cid && <AssignmentsControls cid={cid} />}
       <br />
       <br />
       <ul id="wd-assignments" className="list-group rounded-0">

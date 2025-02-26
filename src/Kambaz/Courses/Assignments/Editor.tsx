@@ -17,9 +17,12 @@ export default function AssignmentEditor() {
         className="form-control my-0"
         value={assignment?.title}
       />
-      <div id="wd-description" className="border form-control my-3">
-        {assignment?.description}
-      </div>
+      <textarea
+        id="wd-description"
+        className="border form-control my-3"
+        rows={8}
+        value={assignment?.description}
+      />
       <div className="mb-3 row">
         <label htmlFor="point" className="col-sm-4 col-form-label text-end">
           Points
