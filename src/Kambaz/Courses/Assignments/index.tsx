@@ -2,19 +2,25 @@ import { BsGripVertical, BsPlus } from "react-icons/bs";
 import AssignmentsControls from "./AssignmentsControls";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { GiNotebook } from "react-icons/gi";
-import LessonControlButtons from "../Modules/LessonControlButtons";
 import { TiArrowSortedDown } from "react-icons/ti";
-import * as db from "../../Database";
 import { useParams } from "react-router";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import GreenCheckmark from "../Modules/GreenCheckmark";
+import { FaTrash } from "react-icons/fa";
+import { deleteAssignment } from "./reducer";
 
 export default function Assignments() {
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { cid } = useParams();
+  const dispatch = useDispatch();
   const filteredAssignments = assignments.filter(
     (assignment: any) => assignment.course === cid
   );
+  const handleDelete = (assignmentId: string) => {
+    if (window.confirm("Are you sure you want to remove the assignment?")) {
+      dispatch(deleteAssignment(assignmentId));
+    }
+  };
   return (
     <div id="wd-assignments">
       {cid && <AssignmentsControls cid={cid} />}
@@ -51,12 +57,20 @@ export default function Assignments() {
                   </a>
                   <br />
                   <span className="text-danger">Multiple Modules</span> |
-                  <b>Not available until</b> {assignment.availableFrom} at 12am
+                  <b>Not available until</b> {assignment.availableFrom}
                   <br />
-                  <b>Due</b> {assignment.due} at 11:59pm | 100 pts
+                  <b>Due</b> {assignment.due} at 11:59pm | {assignment.points}
+                  pts
                 </div>
-                <div className="ms-auto">
-                  <LessonControlButtons />
+                <div className="d-flex align-items-center float-end ms-auto">
+                  <FaTrash
+                    className="text-danger me-2 mb-1"
+                    onClick={() => {
+                      handleDelete(assignment._id);
+                    }}
+                  />
+                  <GreenCheckmark />
+                  <IoEllipsisVertical className="fs-3 mx-2" />
                 </div>
               </li>
             ))}

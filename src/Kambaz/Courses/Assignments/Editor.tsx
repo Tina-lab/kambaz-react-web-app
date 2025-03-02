@@ -1,24 +1,29 @@
 import { CgCalendar } from "react-icons/cg";
 import { RxCross1 } from "react-icons/rx";
-import * as db from "../../Database";
 import { Link, useParams } from "react-router";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { addAssignment } from "./reducer";
+import { addAssignment, updateAssignment } from "./reducer";
+import { useSelector } from "react-redux";
 export default function AssignmentEditor() {
-  const { cid, aid } = useParams();
-  const assignment = db.assignments.find((a) => a._id === aid);
-  const [newassignment, setNewassignment] = useState<any>({
-    _id: uuidv4(),
-    title: "New Assignment",
-    course: { cid },
-    points: 100,
-    availableFrom: "2023-09-10",
-    availableUntil: "2023-12-15",
-    due: "2023-12-15",
-    description: "New Description",
-  });
+  const { cid = "", aid } = useParams();
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const numAssignments = assignments.filter(
+    (a: any) => a.course === cid
+  ).length;
+  const originalAssignment = assignments.find((a: any) => a._id === aid);
+  const [newassignment, setNewassignment] = useState<any>(
+    originalAssignment || {
+      _id: `A${cid.slice(-1)}0${numAssignments + 1}`,
+      title: "New Assignment",
+      course: cid,
+      points: 100,
+      availableFrom: "July 7th",
+      availableUntil: "Sept 15th",
+      due: "Sept 1st",
+      description: "New Description",
+    }
+  );
   const dispatch = useDispatch();
   return (
     <div id="wd-assignments-editor">
@@ -29,23 +34,17 @@ export default function AssignmentEditor() {
         id="wd-name"
         type="text"
         className="form-control my-0"
-        value={assignment?.title}
-        onChange={
-          !assignment
-            ? (e) => {
-                console.log("onChange triggered with value:", e.target.value);
-                setNewassignment({ ...newassignment, title: e.target.value });
-                console.log(newassignment);
-              }
-            : () => {}
-        }
+        value={newassignment?.title}
+        onChange={(e) => {
+          setNewassignment({ ...newassignment, title: e.target.value });
+        }}
         placeholder="New Assignment"
       />
       <textarea
         id="wd-description"
         className="border form-control my-3"
         rows={8}
-        value={assignment?.description}
+        value={newassignment?.description}
         onChange={(e) =>
           setNewassignment({ ...newassignment, description: e.target.value })
         }
@@ -60,7 +59,7 @@ export default function AssignmentEditor() {
             type="text"
             className="form-control"
             id="point"
-            value={assignment?.points}
+            value={newassignment?.points}
             onChange={(e) =>
               setNewassignment({ ...newassignment, points: e.target.value })
             }
@@ -223,7 +222,10 @@ export default function AssignmentEditor() {
               <div className="d-flex align-items-center">
                 <input
                   type="text"
-                  value={`${assignment?.due}, 2024, 11:59 PM`}
+                  value={newassignment?.due}
+                  onChange={(e) =>
+                    setNewassignment({ ...newassignment, due: e.target.value })
+                  }
                   className="form-control"
                 />
                 <CgCalendar className="fs-1" />
@@ -240,7 +242,13 @@ export default function AssignmentEditor() {
                 <div className="d-flex align-items-center wd-grid-col-half-page">
                   <input
                     type="text"
-                    value={assignment?.availableFrom}
+                    value={newassignment?.availableFrom}
+                    onChange={(e) =>
+                      setNewassignment({
+                        ...newassignment,
+                        availableFrom: e.target.value,
+                      })
+                    }
                     className="form-control"
                   />
                   <CgCalendar className="fs-1" />
@@ -248,7 +256,13 @@ export default function AssignmentEditor() {
                 <div className="d-flex align-items-center wd-grid-col-half-page">
                   <input
                     type="text"
-                    value={assignment?.availableUntil}
+                    value={newassignment?.availableUntil}
+                    onChange={(e) =>
+                      setNewassignment({
+                        ...newassignment,
+                        availableUntil: e.target.value,
+                      })
+                    }
                     className="form-control"
                   />
                   <CgCalendar className="fs-1" />
@@ -271,7 +285,12 @@ export default function AssignmentEditor() {
           className="btn btn-lg bg-danger m-1"
           onClick={() => {
             console.log("Saving assignment:", newassignment);
-            dispatch(addAssignment(newassignment));
+            if (originalAssignment) {
+              dispatch(updateAssignment(newassignment));
+            } else {
+              dispatch(addAssignment(newassignment));
+            }
+            console.log(numAssignments + 1);
           }}
         >
           Save

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { assignments } from '../../Database'; // Adjust the path as necessary
-import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
     assignments,
@@ -12,8 +11,8 @@ const assignmentsSlice = createSlice({
     reducers: {
         addAssignment: (state, { payload: assignment }) => {
             const newAssignment: any = {
-              _id: uuidv4(),
-              title: assignment.name,
+              _id: assignment._id,
+              title: assignment.title,
               course: assignment.course,
               availableFrom: assignment.availableFrom,
               availableUntil: assignment.availableUntil,
@@ -22,13 +21,15 @@ const assignmentsSlice = createSlice({
               description: assignment.description,
             };
             state.assignments = [...state.assignments, newAssignment] as any;
+            console.log("addAssignment reducer triggered with assignment:", newAssignment);
           },
           deleteAssignment: (state, { payload: assignmentId }) => {
             state.assignments = state.assignments.filter((m: any) => m._id !== assignmentId);
+            console.log("deleteAssignment reducer triggered with assignmentId:", assignmentId);
           },
-          updateAssignment: (state, { payload: module }) => {
-            state.assignments = state.assignments.map((m: any) =>
-              m._id === module._id ? module : m
+          updateAssignment: (state, { payload: assignment }) => {
+            state.assignments = state.assignments.map((a: any) =>
+              a._id === assignment._id ? assignment : a
             ) as any;
           },
           editAssignment: (state, { payload: moduleId }) => {
