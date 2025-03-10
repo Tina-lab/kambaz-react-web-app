@@ -150,7 +150,7 @@ export default function AssignmentEditor() {
                   className="form-check-label ms-2"
                   htmlFor="wd-file-upload"
                 >
-                  Student Annotation
+                  File Uploads
                 </label>
               </div>
             </div>
