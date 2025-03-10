@@ -3,28 +3,24 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { addEnrollment, deleteEnrollment } from "./enrollments/reducer";
 import { useDispatch } from "react-redux";
-export default function Dashboard({
-  courses,
-  course,
-  setCourse,
-  addNewCourse,
-  deleteCourse,
-  updateCourse,
-}: {
-  courses: any[];
-  course: any;
-  setCourse: (course: any) => void;
-  addNewCourse: () => void;
-  deleteCourse: (course: any) => void;
-  updateCourse: () => void;
-}) {
+import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer";
+export default function Dashboard() {
+  const { courses } = useSelector((state: any) => state.coursesReducer);
+  const [course, setCourse] = useState<any>({
+    _id: "1234",
+    name: "New Course",
+    number: "New Number",
+    startDate: "2023-09-10",
+    endDate: "2023-12-15",
+    description: "New Description",
+  });
   const [enrolling, setEnrolling] = useState(false);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const dispatch = useDispatch();
   const filteredCourses = enrolling
     ? courses
-    : courses.filter((course) =>
+    : courses.filter((course: any) =>
         enrollments?.some(
           (enrollment: any) =>
             enrollment.user === currentUser._id &&
@@ -43,13 +39,18 @@ export default function Dashboard({
             <button
               className="btn btn-primary float-end"
               id="wd-add-new-course-click"
-              onClick={addNewCourse}
+              onClick={() => {
+                console.log(course);
+                dispatch(addCourse(course));
+              }}
             >
               Add
             </button>
             <button
               className="btn btn-warning float-end me-2"
-              onClick={updateCourse}
+              onClick={() => {
+                dispatch(updateCourse(course));
+              }}
               id="wd-update-course-click"
             >
               Update
@@ -76,7 +77,7 @@ export default function Dashboard({
       <h2 id="wd-dashboard-published">
         Published Courses (
         {
-          courses.filter((course) =>
+          courses.filter((course: any) =>
             enrollments.some(
               (enrollment: any) =>
                 enrollment.user === currentUser._id &&
@@ -98,7 +99,7 @@ export default function Dashboard({
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-          {filteredCourses.map((course) => (
+          {filteredCourses.map((course: any) => (
             <div className="wd-dashboard-course col" style={{ width: "300px" }}>
               <div className="card rounded-3 overflow-hidden">
                 {enrolling ? (
@@ -181,7 +182,7 @@ export default function Dashboard({
                           <button
                             onClick={(event) => {
                               event.preventDefault();
-                              deleteCourse(course._id);
+                              dispatch(deleteCourse(course._id));
                             }}
                             className="btn btn-danger float-end"
                             id="wd-delete-course-click"
