@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import { useSelector } from "react-redux";
-import { current } from "@reduxjs/toolkit";
 export default function AssignmentEditor() {
   const { cid = "", aid } = useParams();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
@@ -300,22 +299,23 @@ export default function AssignmentEditor() {
         >
           Cancel
         </Link>
-        <Link
-          to={`/Kambaz/Courses/${cid}/Assignments`}
-          className="btn btn-lg bg-danger m-1"
-          onClick={() => {
-            if (currentUser && currentUser.role !== "FACULTY") return;
-            console.log("Saving assignment:", newassignment);
-            if (originalAssignment) {
-              dispatch(updateAssignment(newassignment));
-            } else {
-              dispatch(addAssignment(newassignment));
-            }
-            console.log(numAssignments + 1);
-          }}
-        >
-          Save
-        </Link>
+        {currentUser && currentUser.role === "FACULTY" && (
+          <Link
+            to={`/Kambaz/Courses/${cid}/Assignments`}
+            className="btn btn-lg bg-danger m-1"
+            onClick={() => {
+              console.log("Saving assignment:", newassignment);
+              if (originalAssignment) {
+                dispatch(updateAssignment(newassignment));
+              } else {
+                dispatch(addAssignment(newassignment));
+              }
+              console.log(numAssignments + 1);
+            }}
+          >
+            Save
+          </Link>
+        )}
       </div>
     </div>
   );
