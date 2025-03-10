@@ -14,16 +14,19 @@ export default function Modules() {
   const filteredModules = modules.filter(
     (module: any) => module.course === cid
   );
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (
     <div className="d-flex flex-column">
-      <ModulesControls
-        setModuleName={setModuleName}
-        moduleName={moduleName}
-        addModule={() => {
-          dispatch(addModule({ name: moduleName, course: cid }));
-          setModuleName("");
-        }}
-      />
+      {currentUser && currentUser.role === "FACULTY" && (
+        <ModulesControls
+          setModuleName={setModuleName}
+          moduleName={moduleName}
+          addModule={() => {
+            dispatch(addModule({ name: moduleName, course: cid }));
+            setModuleName("");
+          }}
+        />
+      )}
       <br />
       <ul id="wd-modules" className="list-group rounded-0">
         {filteredModules.map((module: any) => (
@@ -45,13 +48,15 @@ export default function Modules() {
                   defaultValue={module.name}
                 />
               )}
-              <ModuleControlButtons
-                moduleId={module._id}
-                deleteModule={(moduleId) => {
-                  dispatch(deleteModule(moduleId));
-                }}
-                editModule={(moduleId) => dispatch(editModule(moduleId))}
-              />
+              {currentUser && currentUser.role === "FACULTY" && (
+                <ModuleControlButtons
+                  moduleId={module._id}
+                  deleteModule={(moduleId) => {
+                    dispatch(deleteModule(moduleId));
+                  }}
+                  editModule={(moduleId) => dispatch(editModule(moduleId))}
+                />
+              )}
             </div>
             {module.lessons && (
               <ul className="wd-lessons list-group rounded-0">
@@ -59,7 +64,9 @@ export default function Modules() {
                   <li className="wd-lesson list-group-item p-3 ps-1">
                     <BsGripVertical className="me-2 fs-3" />
                     {lesson.name}
-                    <LessonControlButtons />
+                    {currentUser && currentUser.role === "FACULTY" && (
+                      <LessonControlButtons />
+                    )}
                   </li>
                 ))}
               </ul>

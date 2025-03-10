@@ -21,6 +21,7 @@ export default function Assignments() {
       dispatch(deleteAssignment(assignmentId));
     }
   };
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (
     <div id="wd-assignments">
       {cid && <AssignmentsControls cid={cid} />}
@@ -33,11 +34,15 @@ export default function Assignments() {
             <TiArrowSortedDown className="me-2 fs-3" />
             <span className="fs-4 fw-bold">ASSIGNMENTS</span>
             <div className="d-flex align-items-center ms-auto">
-              <span className="px-3 py-1 rounded-pill border">
-                40% of Total
-              </span>
-              <BsPlus className="fs-1 mx-3" />
-              <IoEllipsisVertical className="fs-1" />
+              {currentUser && currentUser.role === "FACULTY" && (
+                <>
+                  <span className="px-3 py-1 rounded-pill border">
+                    40% of Total
+                  </span>
+                  <BsPlus className="fs-1 mx-3" />
+                  <IoEllipsisVertical className="fs-1" />
+                </>
+              )}
             </div>
           </div>
           <ul
@@ -62,16 +67,18 @@ export default function Assignments() {
                   <b>Due</b> {assignment.due} at 11:59pm | {assignment.points}
                   pts
                 </div>
-                <div className="d-flex align-items-center float-end ms-auto">
-                  <FaTrash
-                    className="text-danger me-2 mb-1"
-                    onClick={() => {
-                      handleDelete(assignment._id);
-                    }}
-                  />
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-3 mx-2" />
-                </div>
+                {currentUser && currentUser.role === "FACULTY" && (
+                  <div className="d-flex align-items-center float-end ms-auto">
+                    <FaTrash
+                      className="text-danger me-2 mb-1"
+                      onClick={() => {
+                        handleDelete(assignment._id);
+                      }}
+                    />
+                    <GreenCheckmark />
+                    <IoEllipsisVertical className="fs-3 mx-2" />
+                  </div>
+                )}
               </li>
             ))}
           </ul>

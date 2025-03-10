@@ -1,5 +1,7 @@
+import { current } from "@reduxjs/toolkit";
 import { FaPlus } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function AssignmentsControls({ cid }: { cid: string }) {
@@ -7,6 +9,7 @@ export default function AssignmentsControls({ cid }: { cid: string }) {
   const navigateToAssignmentEditor = () => {
     navigate(`/Kambaz/Courses/${cid}/Assignments/Add`);
   };
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
 
   return (
     <div
@@ -22,21 +25,31 @@ export default function AssignmentsControls({ cid }: { cid: string }) {
           placeholder="Search..."
         />
       </span>
-      <button
-        id="wd-view-progress"
-        className="btn btn-md btn-secondary me-1 float-end"
-      >
-        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-        Group
-      </button>
-      <button
-        id="wd-view-progress"
-        className="btn btn-md btn-danger me-1 float-end"
-        onClick={navigateToAssignmentEditor}
-      >
-        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-        Assignment
-      </button>
+      {currentUser && currentUser.role === "FACULTY" && (
+        <>
+          <button
+            id="wd-view-progress"
+            className="btn btn-md btn-secondary me-1 float-end"
+          >
+            <FaPlus
+              className="position-relative me-2"
+              style={{ bottom: "1px" }}
+            />
+            Group
+          </button>
+          <button
+            id="wd-view-progress"
+            className="btn btn-md btn-danger me-1 float-end"
+            onClick={navigateToAssignmentEditor}
+          >
+            <FaPlus
+              className="position-relative me-2"
+              style={{ bottom: "1px" }}
+            />
+            Assignment
+          </button>
+        </>
+      )}
     </div>
   );
 }

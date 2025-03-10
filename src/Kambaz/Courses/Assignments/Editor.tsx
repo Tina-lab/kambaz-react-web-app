@@ -5,9 +5,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import { useSelector } from "react-redux";
+import { current } from "@reduxjs/toolkit";
 export default function AssignmentEditor() {
   const { cid = "", aid } = useParams();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const numAssignments = assignments.filter(
     (a: any) => a.course === cid
   ).length;
@@ -36,7 +38,8 @@ export default function AssignmentEditor() {
         className="form-control my-0"
         value={newassignment?.title}
         onChange={(e) => {
-          setNewassignment({ ...newassignment, title: e.target.value });
+          if (currentUser && currentUser.role === "FACULTY")
+            setNewassignment({ ...newassignment, title: e.target.value });
         }}
         placeholder="New Assignment"
       />
@@ -45,9 +48,10 @@ export default function AssignmentEditor() {
         className="border form-control my-3"
         rows={8}
         value={newassignment?.description}
-        onChange={(e) =>
-          setNewassignment({ ...newassignment, description: e.target.value })
-        }
+        onChange={(e) => {
+          if (currentUser && currentUser.role === "FACULTY")
+            setNewassignment({ ...newassignment, description: e.target.value });
+        }}
         placeholder="New Description"
       />
       <div className="mb-3 row">
@@ -60,9 +64,10 @@ export default function AssignmentEditor() {
             className="form-control"
             id="point"
             value={newassignment?.points}
-            onChange={(e) =>
-              setNewassignment({ ...newassignment, points: e.target.value })
-            }
+            onChange={(e) => {
+              if (currentUser && currentUser.role === "FACULTY")
+                setNewassignment({ ...newassignment, points: e.target.value });
+            }}
           />
         </div>
       </div>
@@ -71,7 +76,10 @@ export default function AssignmentEditor() {
           Assignment Group
         </label>
         <div id="wd-group" className="col-sm-8">
-          <select className="form-select">
+          <select
+            className="form-select"
+            disabled={currentUser && currentUser.role !== "FACULTY"}
+          >
             <option selected value="ASSIGNMENTS">
               ASSIGNMENTS
             </option>
@@ -89,7 +97,10 @@ export default function AssignmentEditor() {
           Display Grade as
         </label>
         <div id="wd-display-grade-as" className="col-sm-8 ">
-          <select className="form-select">
+          <select
+            className="form-select"
+            disabled={currentUser && currentUser.role !== "FACULTY"}
+          >
             <option selected value="Percentage">
               Percentage
             </option>
@@ -107,7 +118,10 @@ export default function AssignmentEditor() {
         <div id="wd-submission-type" className="col-sm-8">
           <div className="border">
             <div className="m-3 row">
-              <select className="form-select">
+              <select
+                className="form-select"
+                disabled={currentUser.role !== "FACULTY"}
+              >
                 <option selected value="Online">
                   Online
                 </option>
@@ -223,9 +237,13 @@ export default function AssignmentEditor() {
                 <input
                   type="text"
                   value={newassignment?.due}
-                  onChange={(e) =>
-                    setNewassignment({ ...newassignment, due: e.target.value })
-                  }
+                  onChange={(e) => {
+                    if (currentUser && currentUser.role === "FACULTY")
+                      setNewassignment({
+                        ...newassignment,
+                        due: e.target.value,
+                      });
+                  }}
                   className="form-control"
                 />
                 <CgCalendar className="fs-1" />
@@ -243,12 +261,13 @@ export default function AssignmentEditor() {
                   <input
                     type="text"
                     value={newassignment?.availableFrom}
-                    onChange={(e) =>
-                      setNewassignment({
-                        ...newassignment,
-                        availableFrom: e.target.value,
-                      })
-                    }
+                    onChange={(e) => {
+                      if (currentUser && currentUser.role === "FACULTY")
+                        setNewassignment({
+                          ...newassignment,
+                          availableFrom: e.target.value,
+                        });
+                    }}
                     className="form-control"
                   />
                   <CgCalendar className="fs-1" />
@@ -257,12 +276,13 @@ export default function AssignmentEditor() {
                   <input
                     type="text"
                     value={newassignment?.availableUntil}
-                    onChange={(e) =>
-                      setNewassignment({
-                        ...newassignment,
-                        availableUntil: e.target.value,
-                      })
-                    }
+                    onChange={(e) => {
+                      if (currentUser && currentUser.role === "FACULTY")
+                        setNewassignment({
+                          ...newassignment,
+                          availableUntil: e.target.value,
+                        });
+                    }}
                     className="form-control"
                   />
                   <CgCalendar className="fs-1" />
@@ -284,6 +304,7 @@ export default function AssignmentEditor() {
           to={`/Kambaz/Courses/${cid}/Assignments`}
           className="btn btn-lg bg-danger m-1"
           onClick={() => {
+            if (currentUser && currentUser.role !== "FACULTY") return;
             console.log("Saving assignment:", newassignment);
             if (originalAssignment) {
               dispatch(updateAssignment(newassignment));
