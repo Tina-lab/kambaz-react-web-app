@@ -34,10 +34,29 @@ export const findMyCourses = async () => {
   );
   return data;
 };
+export const findMyEnrollments = async () => {
+  const { data } = await axiosWithCredentials.get(
+    `${USERS_API}/current/enrollments`
+  );
+  return data;
+};
 export const createCourse = async (course: any) => {
   const { data } = await axiosWithCredentials.post(
     `${USERS_API}/current/courses`,
     course
   );
   return data;
+};
+export const createEnrollment = async (course: any) => {
+  const { data } = await axiosWithCredentials.post(
+    `${USERS_API}/current/enrollments`,
+    course
+  );
+  return data;
+};
+export const deleteEnrollment = async (course: any) => {
+  const response = await axiosWithCredentials.delete(
+    `${USERS_API}/current/enrollments/${course._id}`
+  );
+  return response.data;
 };

@@ -316,13 +316,11 @@ export default function AssignmentEditor() {
             to={`/Kambaz/Courses/${cid}/Assignments`}
             className="btn btn-lg bg-danger m-1"
             onClick={() => {
-              console.log("Saving assignment:", newassignment);
               if (originalAssignment) {
                 saveAssignment();
               } else {
                 createAssignmentForCourse();
               }
-              console.log(numAssignments + 1);
             }}
           >
             Save

@@ -22,18 +22,10 @@ const assignmentsSlice = createSlice({
         description: assignment.description,
       };
       state.assignments = [...state.assignments, newAssignment] as any;
-      console.log(
-        "addAssignment reducer triggered with assignment:",
-        newAssignment
-      );
     },
     deleteAssignment: (state, { payload: assignmentId }) => {
       state.assignments = state.assignments.filter(
         (m: any) => m._id !== assignmentId
-      );
-      console.log(
-        "deleteAssignment reducer triggered with assignmentId:",
-        assignmentId
       );
     },
     updateAssignment: (state, { payload: assignment }) => {

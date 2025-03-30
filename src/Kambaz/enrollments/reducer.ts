@@ -1,32 +1,33 @@
-import { createSlice} from '@reduxjs/toolkit';
-import { enrollments } from '../Database'; // Adjust the path as necessary
-
+import { createSlice } from "@reduxjs/toolkit"; // Adjust the path as necessary
+import { v4 as uuidv4 } from "uuid";
 const initialState = {
-    enrollments,
-    enrollmentCount: enrollments.length,
+  enrollments: [],
 };
 
 const enrollmentsSlice = createSlice({
-    name: 'enrollments',
-    initialState,
-    reducers: {
-        addEnrollment: (state, { payload: enrollment }) => {
-            state.enrollmentCount = state.enrollmentCount + 1;
-            const newEnrollment: any = {
-              _id: state.enrollmentCount,
-              user: enrollment.user,
-              course: enrollment.course
-            };
-            state.enrollments = [...state.enrollments, newEnrollment] as any;
-            console.log("addEnrollment reducer triggered with enrollment:", newEnrollment);
-          },
-          deleteEnrollment: (state, { payload: enrollmentId }) => {
-            state.enrollments = state.enrollments.filter((e: any) => e._id !== enrollmentId);
-            console.log("deleteEnrollment reducer triggered with enrollmentId:", enrollmentId);
-          },
+  name: "enrollments",
+  initialState,
+  reducers: {
+    setEnrollments: (state, action) => {
+      state.enrollments = action.payload;
     },
+    addEnrollment: (state, { payload: enrollment }) => {
+      const newEnrollment: any = {
+        _id: uuidv4(),
+        user: enrollment.user,
+        course: enrollment.course,
+      };
+      state.enrollments = [...state.enrollments, newEnrollment] as any;
+    },
+    deleteEnrollment: (state, { payload: enrollmentId }) => {
+      state.enrollments = state.enrollments.filter(
+        (e: any) => e._id !== enrollmentId
+      );
+    },
+  },
 });
 
-export const { addEnrollment, deleteEnrollment} = enrollmentsSlice.actions;
+export const { setEnrollments, addEnrollment, deleteEnrollment } =
+  enrollmentsSlice.actions;
 
 export default enrollmentsSlice.reducer;
