@@ -5,6 +5,7 @@ import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
 import { useParams } from "react-router";
 import * as coursesClient from "../client";
+import * as modulesClient from "./client";
 import {
   setModules,
   addModule,
@@ -13,6 +14,7 @@ import {
   deleteModule,
 } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
+
 export default function Modules() {
   const { cid } = useParams();
   const fetchModules = async () => {
@@ -23,11 +25,21 @@ export default function Modules() {
     fetchModules();
   }, []);
 
+  const removeModule = async (moduleId: string) => {
+    await modulesClient.deleteModule(moduleId);
+    dispatch(deleteModule(moduleId));
+  };
+
   const createModuleForCourse = async () => {
     if (!cid) return;
     const newModule = { name: moduleName, course: cid };
     const module = await coursesClient.createModuleForCourse(cid, newModule);
     dispatch(addModule(module));
+  };
+
+  const saveModule = async (module: any) => {
+    await modulesClient.updateModule(module);
+    dispatch(updateModule(module));
   };
 
   const { modules } = useSelector((state: any) => state.modulesReducer);
@@ -47,7 +59,7 @@ export default function Modules() {
       <ul id="wd-modules" className="list-group rounded-0">
         {modules.map((module: any) => (
           <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
-            <div className="wd-title p-3 ps-2 bg-secondary">
+            <div className="wd-title p-3 ps-2 bg-secondary align-items-center d-flex">
               <BsGripVertical className="me-2 fs-3" />
               {!module.editing && module.name}
               {module.editing && (
@@ -58,21 +70,21 @@ export default function Modules() {
                   }
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      dispatch(updateModule({ ...module, editing: false }));
+                      saveModule({ ...module, editing: false });
                     }
                   }}
                   defaultValue={module.name}
                 />
               )}
-              {currentUser && currentUser.role === "FACULTY" && (
-                <ModuleControlButtons
-                  moduleId={module._id}
-                  deleteModule={(moduleId) => {
-                    dispatch(deleteModule(moduleId));
-                  }}
-                  editModule={(moduleId) => dispatch(editModule(moduleId))}
-                />
-              )}
+              <div className="d-flex align-items-center ms-auto float-end">
+                {currentUser && currentUser.role === "FACULTY" && (
+                  <ModuleControlButtons
+                    moduleId={module._id}
+                    deleteModule={(moduleId) => removeModule(moduleId)}
+                    editModule={(moduleId) => dispatch(editModule(moduleId))}
+                  />
+                )}
+              </div>
             </div>
             {module.lessons && (
               <ul className="wd-lessons list-group rounded-0">

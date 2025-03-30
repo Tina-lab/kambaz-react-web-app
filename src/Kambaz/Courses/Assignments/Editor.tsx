@@ -5,13 +5,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import { useSelector } from "react-redux";
+import * as assignmentsClient from "./client";
+import * as coursesClient from "../client";
 export default function AssignmentEditor() {
   const { cid = "", aid } = useParams();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const numAssignments = assignments.filter(
-    (a: any) => a.course === cid
-  ).length;
+  const numAssignments = assignments.length;
   const originalAssignment = assignments.find((a: any) => a._id === aid);
   const [newassignment, setNewassignment] = useState<any>(
     originalAssignment || {
@@ -25,6 +25,18 @@ export default function AssignmentEditor() {
       description: "New Description",
     }
   );
+  const createAssignmentForCourse = async () => {
+    if (!cid) return;
+    const assignment = await coursesClient.createAssignmentForCourse(
+      cid,
+      newassignment
+    );
+    dispatch(addAssignment(assignment));
+  };
+  const saveAssignment = async () => {
+    await assignmentsClient.updateAssignment(newassignment);
+    dispatch(updateAssignment(newassignment));
+  };
   const dispatch = useDispatch();
   return (
     <div id="wd-assignments-editor">
@@ -306,9 +318,9 @@ export default function AssignmentEditor() {
             onClick={() => {
               console.log("Saving assignment:", newassignment);
               if (originalAssignment) {
-                dispatch(updateAssignment(newassignment));
+                saveAssignment();
               } else {
-                dispatch(addAssignment(newassignment));
+                createAssignmentForCourse();
               }
               console.log(numAssignments + 1);
             }}

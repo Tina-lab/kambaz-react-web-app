@@ -7,20 +7,29 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { FaTrash } from "react-icons/fa";
-import { deleteAssignment } from "./reducer";
-
+import { setAssignments, deleteAssignment } from "./reducer";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
+import { useEffect } from "react";
 export default function Assignments() {
-  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { cid } = useParams();
   const dispatch = useDispatch();
-  const filteredAssignments = assignments.filter(
-    (assignment: any) => assignment.course === cid
-  );
-  const handleDelete = (assignmentId: string) => {
+  const fetchAssignments = async () => {
+    const Assignments = await coursesClient.findAssignmentsForCourse(
+      cid as string
+    );
+    dispatch(setAssignments(Assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+  const handleDelete = async (assignmentId: string) => {
     if (window.confirm("Are you sure you want to remove the assignment?")) {
+      await assignmentsClient.deleteAssignment(assignmentId);
       dispatch(deleteAssignment(assignmentId));
     }
   };
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (
     <div id="wd-assignments">
@@ -49,7 +58,7 @@ export default function Assignments() {
             id="wd-assignment-list"
             className="wd-assignments list-group rounded-0"
           >
-            {filteredAssignments.map((assignment: any) => (
+            {assignments.map((assignment: any) => (
               <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
                 <BsGripVertical className="me-2 fs-3" />
                 <GiNotebook className="me-2 fs-3 text-success" />
