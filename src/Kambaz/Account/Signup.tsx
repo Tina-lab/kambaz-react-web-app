@@ -33,8 +33,7 @@ export default function Signup() {
         id="wd-signup-btn"
         className="btn btn-primary mb-2 w-100"
       >
-        {" "}
-        Sign up{" "}
+        Sign up
       </button>
       <Link to="/Kambaz/Account/Signin" className="wd-signin-link">
         Sign in
