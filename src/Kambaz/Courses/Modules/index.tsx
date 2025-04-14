@@ -44,11 +44,6 @@ export default function Modules() {
     dispatch(updateModule(module));
   };
 
-  const saveModule = async (module: any) => {
-    await modulesClient.updateModule(module);
-    dispatch(updateModule(module));
-  };
-
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
   const [moduleName, setModuleName] = useState("");
