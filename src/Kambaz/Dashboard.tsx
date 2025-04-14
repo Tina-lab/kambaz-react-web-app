@@ -8,51 +8,28 @@ import * as courseClient from "./Courses/client";
 //   addEnrollment,
 //   deleteEnrollment,
 // } from "./enrollments/reducer";
-export default function Dashboard() {
-  const [courses, setCourses] = useState<any[]>([]);
-  const [course, setCourse] = useState<any>({
-    _id: "0",
-    name: "New Course",
-    number: "New Number",
-    startDate: "2023-09-10",
-    endDate: "2023-12-15",
-    description: "New Description",
-  });
-
+export default function Dashboard({
+  courses,
+  course,
+  setCourse,
+  addNewCourse,
+  deleteCourse,
+  updateCourse,
+  enrolling,
+  setEnrolling,
+  updateEnrollment,
+}: {
+  courses: any[];
+  course: any;
+  setCourse: any;
+  addNewCourse: any;
+  deleteCourse: any;
+  updateCourse: any;
+  enrolling: boolean;
+  setEnrolling: (enrolling: boolean) => void;
+  updateEnrollment: (courseId: string, enrolled: boolean) => void;
+}) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const addCourse = async () => {
-    const newCourse = await userClient.createCourse(course);
-    setCourses([...courses, newCourse]);
-  };
-  const deleteCourse = async (courseId: string) => {
-    await courseClient.deleteCourse(courseId);
-    setCourses(courses.filter((course) => course._id !== courseId));
-  };
-  const updateCourse = async () => {
-    await courseClient.updateCourse(course);
-    setCourses(
-      courses.map((c) => {
-        if (c._id === course._id) {
-          return course;
-        } else {
-          return c;
-        }
-      })
-    );
-  };
-
-  const deleteEnrollment = async (course: any) => {
-    await userClient.deleteEnrollment(course);
-    setEnrollments(
-      enrollments.filter((enrollment) => enrollment.course !== course._id)
-    );
-  };
-
-  const createEnrollment = async (course: any) => {
-    const newEnrollment = await userClient.createEnrollment(course);
-    setEnrollments([...enrollments, newEnrollment]);
-  };
-
   const fetchCourses = async () => {
     try {
       let coursesData;
@@ -63,13 +40,12 @@ export default function Dashboard() {
         // Otherwise, fetch only the courses for the current user.
         coursesData = await userClient.findMyCourses();
       }
-      setCourses(coursesData);
+      setCourse(coursesData);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const [enrolling, setEnrolling] = useState(false);
   const [enrollments, setEnrollments] = useState<any[]>([]);
 
   const fetchEnrollments = async () => {
@@ -99,7 +75,7 @@ export default function Dashboard() {
             <button
               className="btn btn-primary float-end"
               id="wd-add-new-course-click"
-              onClick={addCourse}
+              onClick={addNewCourse}
             >
               Add
             </button>
@@ -160,32 +136,19 @@ export default function Dashboard() {
                       >
                         {course.description}
                       </p>
-                      {enrolling &&
-                        enrollments.some(
-                          (enrollment: any) => enrollment.course === course._id
-                        ) && (
-                          <button
-                            className="btn btn-success float-end"
-                            onClick={() => {
-                              deleteEnrollment(course);
-                            }}
-                          >
-                            Unenroll
-                          </button>
-                        )}
-                      {enrolling &&
-                        !enrollments.some(
-                          (enrollment: any) => enrollment.course === course._id
-                        ) && (
-                          <button
-                            className="btn btn-danger float-end"
-                            onClick={() => {
-                              createEnrollment(course);
-                            }}
-                          >
-                            Enroll
-                          </button>
-                        )}
+                      {enrolling && (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            updateEnrollment(course._id, !course.enrolled);
+                          }}
+                          className={`btn ${
+                            course.enrolled ? "btn-danger" : "btn-success"
+                          } float-end`}
+                        >
+                          {course.enrolled ? "Unenroll" : "Enroll"}
+                        </button>
+                      )}
                     </div>
                   </div>
                 ) : (

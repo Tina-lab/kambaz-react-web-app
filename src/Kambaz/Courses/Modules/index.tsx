@@ -39,6 +39,11 @@ export default function Modules() {
     setModuleName("");
   };
 
+  const updateModuleHandler = async (module: any) => {
+    await modulesClient.updateModule(module);
+    dispatch(updateModule(module));
+  };
+
   const saveModule = async (module: any) => {
     await modulesClient.updateModule(module);
     dispatch(updateModule(module));
@@ -68,11 +73,11 @@ export default function Modules() {
                 <input
                   className="form-control w-50 d-inline-block"
                   onChange={(e) =>
-                    dispatch(updateModule({ ...module, name: e.target.value }))
+                    updateModuleHandler({ ...module, name: e.target.value })
                   }
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      saveModule({ ...module, editing: false });
+                      updateModuleHandler({ ...module, editing: false });
                     }
                   }}
                   defaultValue={module.name}
