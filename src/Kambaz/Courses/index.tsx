@@ -8,11 +8,22 @@ import { FaAlignJustify } from "react-icons/fa";
 import PeopleTable from "./People/Table";
 import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import * as client from "../Courses/client";
 export default function Courses() {
   const { courses } = useSelector((state: any) => state.coursesReducer);
   const { cid } = useParams();
   const course = courses.find((course: any) => course._id === cid);
   const { pathname } = useLocation();
+  const [users, setUsers] = useState<any[]>([]);
+  const fetchUsers = async () => {
+    if (cid) {
+      setUsers(await client.findUsersForCourse(cid));
+    }
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, [cid]);
   return (
     <div id="wd-courses">
       <h2 className="text-danger">
@@ -31,7 +42,7 @@ export default function Courses() {
             <Route path="Modules" element={<Modules />} />
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
-            <Route path="People" element={<PeopleTable />} />
+            <Route path="People" element={<PeopleTable users={users} />} />
           </Routes>
         </div>
       </div>
