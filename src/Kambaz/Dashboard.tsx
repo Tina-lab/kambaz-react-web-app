@@ -30,26 +30,6 @@ export default function Dashboard({
   updateEnrollment: (courseId: string, enrolled: boolean) => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const fetchCourses = async () => {
-    try {
-      let coursesData;
-      if (currentUser && currentUser.role === "STUDENT" && enrolling) {
-        // When enrollment mode is active, fetch all courses.
-        coursesData = await courseClient.fetchAllCourses();
-      } else {
-        // Otherwise, fetch only the courses for the current user.
-        coursesData = await userClient.findMyCourses();
-      }
-      setCourse(coursesData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCourses();
-  }, [currentUser, enrolling]);
-
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>

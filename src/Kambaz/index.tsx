@@ -24,9 +24,13 @@ export default function Kambaz() {
   });
 
   const addNewCourse = async () => {
-    setCourse({ ...course, _id: uuidv4 });
-    const newCourse = await courseClient.createCourse(course);
-    setCourses([...courses, newCourse]);
+    const newCourse = {
+      ...course,
+      _id: uuidv4(),
+    };
+    setCourse(newCourse); // update state for UI
+    const created = await courseClient.createCourse(newCourse); // use correct object
+    setCourses([...courses, created]);
   };
 
   const deleteCourse = async (courseId: string) => {
