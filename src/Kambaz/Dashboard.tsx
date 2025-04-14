@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import * as userClient from "./Account/client";
-import * as courseClient from "./Courses/client";
 // import {
 //   setEnrollments,
 //   addEnrollment,
