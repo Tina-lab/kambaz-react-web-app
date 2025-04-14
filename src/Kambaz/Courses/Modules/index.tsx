@@ -17,24 +17,26 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Modules() {
   const { cid } = useParams();
-  const fetchModules = async () => {
-    const modules = await coursesClient.findModulesForCourse(cid as string);
+  const fetchModulesForCourse = async () => {
+    const modules = await coursesClient.findModulesForCourse(cid!);
     dispatch(setModules(modules));
   };
   useEffect(() => {
-    fetchModules();
-  }, []);
+    fetchModulesForCourse();
+  }, [cid]);
 
-  const removeModule = async (moduleId: string) => {
+  const deleteModuleHandler = async (moduleId: string) => {
     await modulesClient.deleteModule(moduleId);
     dispatch(deleteModule(moduleId));
   };
 
-  const createModuleForCourse = async () => {
-    if (!cid) return;
-    const newModule = { name: moduleName, course: cid };
-    const module = await coursesClient.createModuleForCourse(cid, newModule);
-    dispatch(addModule(module));
+  const addModuleHandler = async () => {
+    const newModule = await coursesClient.createModuleForCourse(cid!, {
+      name: moduleName,
+      course: cid,
+    });
+    dispatch(addModule(newModule));
+    setModuleName("");
   };
 
   const saveModule = async (module: any) => {
@@ -52,7 +54,7 @@ export default function Modules() {
         <ModulesControls
           setModuleName={setModuleName}
           moduleName={moduleName}
-          addModule={createModuleForCourse}
+          addModule={addModuleHandler}
         />
       )}
       <br />
@@ -80,7 +82,7 @@ export default function Modules() {
                 {currentUser && currentUser.role === "FACULTY" && (
                   <ModuleControlButtons
                     moduleId={module._id}
-                    deleteModule={(moduleId) => removeModule(moduleId)}
+                    deleteModule={(moduleId) => deleteModuleHandler(moduleId)}
                     editModule={(moduleId) => dispatch(editModule(moduleId))}
                   />
                 )}
