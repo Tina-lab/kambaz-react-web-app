@@ -10,6 +10,7 @@ import * as courseClient from "./Courses/client";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import * as userClient from "./Account/client";
+import { v4 as uuidv4 } from "uuid";
 export default function Kambaz() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const [courses, setCourses] = useState<any[]>([]);
@@ -23,6 +24,7 @@ export default function Kambaz() {
   });
 
   const addNewCourse = async () => {
+    setCourse({ ...course, _id: uuidv4 });
     const newCourse = await courseClient.createCourse(course);
     setCourses([...courses, newCourse]);
   };
