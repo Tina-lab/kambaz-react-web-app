@@ -96,6 +96,11 @@ export default function Kambaz() {
   };
 
   useEffect(() => {
+    // reset enrolling when user logs in or out
+    setEnrolling(false);
+  }, [currentUser]);
+
+  useEffect(() => {
     if (enrolling) {
       fetchCourses();
     } else {
